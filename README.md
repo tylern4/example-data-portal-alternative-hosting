@@ -66,3 +66,17 @@ In the below example, a `deploy` job is configured to deploy the generated asset
 ```
 
 
+## Common (Required) Changes to Configurations
+
+When you update your portal to be deployed to an alternative host, there are likely configuration values in your `static.json` and Globus Application (when using Globus Auth for authentication) that will need to be updated to reflect your new (custom) host. Commonly, these configuration changes include:
+
+- Updating your Globus Application **Redirects** to include your new host (e.g. `https://{CUSTOM_HOST}/authenticate`).
+
+
+
+
+
+
+
+
+
