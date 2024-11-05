@@ -44,3 +44,7 @@ jobs:
         aws-region: us-east-1
     - run: |
         aws s3 sync ./artifact s3://globus-serverless-data-portal-example
+    # The example implementation uses AWS Amplify to distribute the S3-deployed application; Redeploy the website to Amplify Hosting on S3 updates.
+    # @see https://docs.aws.amazon.com/amplify/latest/userguide/update-website-deployed-from-s3.html
+    - run: |
+        aws amplify start-deployment --app-id d2i99wxmf4jtwi --branch-name main --source-url s3://globus-serverless-data-portal-example source-url-type BUCKET_PREFIX
