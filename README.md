@@ -18,7 +18,7 @@ When using our [Serverless Portal Templates](https://github.com/orgs/globus/repo
 The `.github/workflows/static.yml` is responsible for building your portal using the configured generator and configured content (e.g. `static.json` and `content` directory). Two modifications are required in order to utilize your own hosting mechanism:
 
 1. Disable GitHub Pages Deployment
-2. Add your own `deploy` Job that uses the `static`-generated Artifact
+2. Add your own [GitHub Action Job](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/using-jobs-in-a-workflow) that uses the `static`-generated Artifact
 
 
 ### Disable GitHub Pages Deployment
@@ -35,9 +35,12 @@ jobs:
 
 ### Add your own job that uses the `static`-generated Artifact
 
-With the `static` workflow deployment disabled, you can now add additional jobs that utilize the generated artifact for upload to our custom host.
+With the `static` workflow deployment disabled, you can now add additional jobs that utilize the generated artifact, including upload to your custom host.
+
+There are a few important implementation details to consider when adding your own job:
 
 - The `static` workflow produces an asset named `github-pages`.
+  - Currently, the produced artifact is the result of [`actions/upload-pages-artifact@v3`](https://github.com/actions/upload-pages-artifact/tree/v3).
 - Our Serverless Portal Templates use [Next.js](https://nextjs.org/) to export a static site. Their documentation on [deploying a static export](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports#deploying) can be helpful when configuring your infrastructure to handle requests properly.
 
 In the below example, a `deploy` job is configured to deploy the generated assets to Amazon S3.
