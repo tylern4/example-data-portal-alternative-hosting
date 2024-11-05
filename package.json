@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@globus/static-data-portal": "^2.0.0"
+  }
+}
