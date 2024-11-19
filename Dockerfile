@@ -4,5 +4,5 @@ WORKDIR /static/site
 COPY artifact.tar artifact.tar
 RUN tar -xf artifact.tar -C .
 
-ENTRYPOINT [ "python3",  "-m",  "http.server", "-p", "8080"]
+ENTRYPOINT [ "python3",  "-m",  "http.server", "8080"]
 
