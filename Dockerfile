@@ -1,5 +1,8 @@
-FROM nginx:latest
+FROM python:3.13.0
 
-WORKDIR /usr/share/nginx/html
+WORKDIR /static/site
 COPY artifact.tar artifact.tar
 RUN tar -xf artifact.tar -C .
+
+ENTRYPOINT [ "python3",  "-m",  "http.server", "-p", "8080"]
+
